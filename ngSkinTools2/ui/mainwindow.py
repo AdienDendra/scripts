@@ -88,7 +88,7 @@ def build_menu(parent, actions):
     sub = top_level_menu("ILM")
     sub.addSeparator().setText("Skin Export Joint List")
     sub.addAction(actions.ilm_importJointList)
-    sub.addAction(actions.ilm_importJointListAndSkinned)
+    # sub.addAction(actions.ilm_importJointListAndSkinned)
 
     return menu
 
