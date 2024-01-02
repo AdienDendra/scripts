@@ -1,14 +1,15 @@
 """
 DESCRIPTION:
-    This file is an additional function menu in NGSkin Tool window. There are 2 main functionalities
-    1. retrieving data joints that already exported previously.
-    2. binding the skin weight from the joints data then running the imported layer window
+    This file is an additional function menu in the NGSkin Tool window. It has two menus:
+    1. Retrieving data joints that have already been exported.
+    2. Binding the geo selected with the joints data and then running the imported layer window.
 
 USAGE:
-    1. - run the "Select all the joint list" then all the joints in the scene will be selected
-
-    2. - select the geo without skin weight
-       - run the "Bind skin and import layer"
+    1. Run the "Select all the joint list" then all the joints in the scene will be selected according to the .json data.
+    2. - Select the geo without the skin weight.
+       - Run the "Binding skin and import layer.."
+       - The geo will be bound to the joints in the scene according to the .json data.
+       - Import layer window will be run automatically.
 
 AUTHOR:
     Adien Dendra - adendra@ilm.com
