@@ -18,6 +18,8 @@ AUTHOR:
 from PySide2 import QtWidgets
 import maya.cmds as cmds
 import maya.mel as mel
+import maya.OpenMaya as om
+
 
 from ngSkinTools2 import api
 from ngSkinTools2.ui.options import PersistentValue
@@ -55,10 +57,10 @@ def ilm_data_list(file_name, selected_format):
             newList.append(object)
         else:
             objectName = object.split("|")
-            cmds.warning('{} {}'.format(objectName[-1], "doesn't exist in the scene"))
+            cmds.warning("'{}'{}".format(objectName[-1], " doesn't exist in the scene, skip!"))
 
     if not newList:
-        raise ValueError('nothing object is matched between the data and the scene!')
+        raise IndexError('Nothing object is matched between the data and the scene!')
 
     return newList
 
@@ -86,6 +88,10 @@ def ilm_importJointList(parent, file_dialog_func=None):
         list_data = ilm_data_list(file_name, selected_format)
         cmds.select(list_data, r=True)
 
+        # show the list info
+        list_name = [item.split("|")[-1] for item in list_data]
+        om.MGlobal.displayInfo('{}{}'.format('Object selected list >>> ', list_name))
+
     result = actions.define_action(parent, "Select all the joint list", callback=import_callback,
                                    tooltip="Load previously joints exported weights")
 
@@ -111,12 +117,12 @@ def ilm_bindSkinAndImportLayer(parent, file_dialog_func=None):
     def import_callback_bindSkin():
         # condition if mesh select or not
         if len (cmds.ls(sl=True)) != 1:
-            raise ValueError('please select one object mesh!')
+            raise ValueError('Please select one object geo!')
 
         # filter object mesh selection
         object_mesh = cmds.ls(sl=True, dag=True, type="mesh", long=True)
         if not object_mesh:
-            raise ValueError('please select a mesh object!')
+            raise ValueError('Please select a geo object!')
 
         # target object to be skinned
         geo =[]
@@ -126,7 +132,7 @@ def ilm_bindSkinAndImportLayer(parent, file_dialog_func=None):
         # condition objet has a skin weight
         target_geo = mel.eval('findRelatedSkinCluster ' + geo[0])
         if target_geo:
-            raise ValueError('the object selected already has a skin weight!')
+            raise ValueError('The object geo already has a skin weight!')
 
         # take the joint data list
         file_name, selected_format = file_dialog_func()
