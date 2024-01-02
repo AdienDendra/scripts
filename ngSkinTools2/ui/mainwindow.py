@@ -1,4 +1,7 @@
+import importlib
+
 import maya.OpenMayaUI as omui
+from ngSkinTools2.ui import actions
 import shiboken2
 from maya import cmds
 from PySide2 import QtCore, QtGui, QtWidgets
@@ -26,7 +29,7 @@ from . import (
 from .layout import scale_multiplier
 
 log = getLogger("main window")
-
+importlib.reload(actions)
 
 def get_image_path(file_name):
     import os
@@ -86,9 +89,9 @@ def build_menu(parent, actions):
 
     # ILM
     sub = top_level_menu("ILM")
-    sub.addSeparator().setText("Skin Export Joint List")
+    sub.addSeparator().setText("Import data from JSON")
     sub.addAction(actions.ilm_importJointList)
-    # sub.addAction(actions.ilm_importJointListAndSkinned)
+    sub.addAction(actions.ilm_bindSkinAndImportLayer)
 
     return menu
 

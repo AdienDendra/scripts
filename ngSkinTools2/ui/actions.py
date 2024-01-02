@@ -1,10 +1,14 @@
+import importlib
 from PySide2 import QtGui, QtWidgets
 
 from ngSkinTools2 import signal
 from ngSkinTools2.api import PasteOperation
 from ngSkinTools2.api.python_compatibility import Object
 from ngSkinTools2.api.session import Session
-from ngSkinTools2.operations import import_export_actions, import_v1_actions, ilm_importJointList_actions
+from ngSkinTools2.operations import import_export_actions, import_v1_actions, ilm_importFromJson_actions
+
+importlib.reload(ilm_importFromJson_actions)
+
 from ngSkinTools2.operations.layers import (
     ToggleEnabledAction,
     build_action_initialize_layers,
@@ -69,8 +73,8 @@ class Actions(Object):
         self.import_v1 = import_v1_actions.build_action_import_v1(session, parent)
 
         #ILM
-        self.ilm_importJointList = ilm_importJointList_actions.ilm_importJointList(session, parent)
-        # self.ilm_importJointListAndSkinned = import_export_actions.buildAction_ilm_importJntListSkinned(session, parent)
+        self.ilm_importJointList = ilm_importFromJson_actions.ilm_importJointList(parent)
+        self.ilm_bindSkinAndImportLayer = ilm_importFromJson_actions.ilm_bindSkinAndImportLayer(parent)
 
 
         self.addLayer = layers.buildAction_createLayer(session, parent)
