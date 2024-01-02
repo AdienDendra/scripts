@@ -21,11 +21,8 @@ import maya.mel as mel
 
 from ngSkinTools2 import api
 from ngSkinTools2.ui.options import PersistentValue
-from ngSkinTools2.ui.transferDialog import LayersTransfer, UiModel, open
 from ngSkinTools2.api import plugin
 from ngSkinTools2.api.import_export import FileFormatWrapper
-
-from ngSkinTools2.ui import actions
 
 filter_normal_json = 'JSON files(*.json)'
 filter_compressed = 'Compressed JSON(*.json.gz)'
@@ -67,6 +64,7 @@ def ilm_data_list(file_name, selected_format):
 
 
 def ilm_importJointList(parent, file_dialog_func=None):
+    from ngSkinTools2.ui import actions
 
     def default_file_dialog_func():
         file_name, selected_filter = QtWidgets.QFileDialog.getOpenFileName(
@@ -94,6 +92,8 @@ def ilm_importJointList(parent, file_dialog_func=None):
     return result
 
 def ilm_bindSkinAndImportLayer(parent, file_dialog_func=None):
+    from ngSkinTools2.ui import actions
+    from ngSkinTools2.ui.transferDialog import LayersTransfer, UiModel, open
 
     def default_file_dialog_func():
         file_name, selected_filter = QtWidgets.QFileDialog.getOpenFileName(
