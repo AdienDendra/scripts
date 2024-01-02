@@ -1,5 +1,4 @@
 import os
-import importlib
 
 DEBUG_MODE = os.getenv("NGSKINTOOLS_DEBUG", 'false') == 'true'
 
@@ -17,7 +16,6 @@ def open_ui():
     window to front.
     """
     from ngSkinTools2.ui import mainwindow
-    importlib.reload(mainwindow)
     mainwindow.open()
 
 

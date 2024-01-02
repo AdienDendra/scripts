@@ -1,4 +1,3 @@
-import importlib
 
 import maya.OpenMayaUI as omui
 from ngSkinTools2.ui import actions
@@ -29,7 +28,6 @@ from . import (
 from .layout import scale_multiplier
 
 log = getLogger("main window")
-importlib.reload(actions)
 
 def get_image_path(file_name):
     import os

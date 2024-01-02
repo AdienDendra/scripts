@@ -1,4 +1,3 @@
-import importlib
 from PySide2 import QtGui, QtWidgets
 
 from ngSkinTools2 import signal
@@ -7,7 +6,6 @@ from ngSkinTools2.api.python_compatibility import Object
 from ngSkinTools2.api.session import Session
 from ngSkinTools2.operations import import_export_actions, import_v1_actions, ilm_importFromJson_actions
 
-importlib.reload(ilm_importFromJson_actions)
 
 from ngSkinTools2.operations.layers import (
     ToggleEnabledAction,
