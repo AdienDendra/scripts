@@ -21,13 +21,11 @@ import maya.mel as mel
 
 from ngSkinTools2 import api
 from ngSkinTools2.ui.options import PersistentValue
-from ngSkinTools2.api import plugin
 from ngSkinTools2.ui.transferDialog import LayersTransfer, UiModel, open
+from ngSkinTools2.api import plugin
 from ngSkinTools2.api.import_export import FileFormatWrapper
-import importlib
 
 from ngSkinTools2.ui import actions
-importlib.reload(actions)
 
 filter_normal_json = 'JSON files(*.json)'
 filter_compressed = 'Compressed JSON(*.json.gz)'
